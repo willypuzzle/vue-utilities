@@ -1,6 +1,6 @@
 {
-  "name": "vue-utilities",
-  "version": "1.0.0",
+  "name": "wp-vue-utilities",
+  "version": "1.0.2",
   "description": "Package with some vue utilities, in order to simplify life",
   "main": "src/index.js",
   "scripts": {
@@ -14,12 +14,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/willypuzzle/vue-utilities.git"
+    "url": "git+https://github.com/willypuzzle/wp-vue-utilities.git"
   },
   "bugs": {
-    "url": "https://github.com/willypuzzle/vue-utilities/issues"
+    "url": "https://github.com/willypuzzle/wp-vue-utilities/issues"
   },
-  "homepage": "https://github.com/willypuzzle/vue-utilities#readme",
+  "homepage": "https://github.com/willypuzzle/wp-vue-utilities#readme",
   "dependencies" :
   {
     "randomstring" : "^1.1.5",

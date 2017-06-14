@@ -4,7 +4,7 @@
 <template>
     <div>
         <div>
-            <div v-for="(input, index )in inputs">
+            <div v-for="(input, index) in inputs">
                 <label  v-if="input.label"
                         :class="input.label.className ? input.label.className : ''"
                         :for="'ajax-form-input-field-' + domId + '-' + index"
