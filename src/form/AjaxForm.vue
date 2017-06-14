@@ -91,8 +91,8 @@
                 $inputs.each(function () {
                     let $input = $(this);
                     $input.removeClass('ajax-form-input-field-error');
-                    if(inputs.errorClass){
-                        $input.removeClass(inputs.errorClass);
+                    if(inputs.inputErrorClass){
+                        $input.removeClass(config.inputErrorClass);
                     }
                     let id = $input.attr('id');
                     let required = $input.prop('required');
@@ -115,8 +115,8 @@
                     if(!this._validateInput(inputData)){
                         let $input = $('#' + inputData.id);
                         $input.addClass('ajax-form-input-field-error');
-                        if(config.errorClass){
-                            $input.addClass(inputs.errorClass);
+                        if(config.inputErrorClass){
+                            $input.addClass(config.inputErrorClass);
                         }
                         ctrl = false;
                     }
