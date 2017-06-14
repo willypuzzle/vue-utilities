@@ -51,8 +51,8 @@
         },
         methods: {
             cancel(){
-                if(buttons.cancel && buttons.cancel.action){
-                    buttons.cancel.action(this);
+                if(this.buttons.cancel && this.buttons.cancel.action){
+                    this.buttons.cancel.action(this);
                 }else{
                     if(this.$router){
                         this.$router.go(-1);
@@ -82,8 +82,9 @@
                 }
             },
             confirm(){
-                if(buttons.confirm && buttons.confirm.action){
-                    buttons.confirm.action(this);
+                let thisComponent = this;
+                if(thisComponent.buttons.confirm && thisComponent.buttons.confirm.action){
+                    thisComponent.buttons.confirm.action(thisComponent);
                 }
                 let $dom = $(this.$el);
                 let $inputs = $dom.find('.ajax-form-input-field')
@@ -91,8 +92,8 @@
                 $inputs.each(function () {
                     let $input = $(this);
                     $input.removeClass('ajax-form-input-field-error');
-                    if(inputs.inputErrorClass){
-                        $input.removeClass(config.inputErrorClass);
+                    if(thisComponent.config.inputErrorClass){
+                        $input.removeClass(thisComponent.config.inputErrorClass);
                     }
                     let id = $input.attr('id');
                     let required = $input.prop('required');
@@ -115,8 +116,8 @@
                     if(!this._validateInput(inputData)){
                         let $input = $('#' + inputData.id);
                         $input.addClass('ajax-form-input-field-error');
-                        if(config.inputErrorClass){
-                            $input.addClass(config.inputErrorClass);
+                        if(thisComponent.config.inputErrorClass){
+                            $input.addClass(thisComponent.config.inputErrorClass);
                         }
                         ctrl = false;
                     }
@@ -129,22 +130,21 @@
                 let $errorField = $dom.find('.ajax-form-error-field');
 
                 axios.post(
-                    this.config.postUrl,
-                    this._buildPostObject(data)
+                    thisComponent.config.postUrl,
+                    thisComponent.buildPostObject(data)
                 ).then((response) => {
                     if(response.code === 200){
-                        if(config.responseOkAction){
-                            config.responseOkAction(this);
-                        }else if(this.$router && config.responseOkRoute){
-                            this.$router.go(config.responseOkRoute);
+                        if(thisComponent.config.responseOkAction){
+                            thisComponent.config.responseOkAction(this);
+                        }else if(thisComponent.$router && thisComponent.config.responseOkRoute){
+                            thisComponent.$router.go(thisComponent.config.responseOkRoute);
                         }
                     }else{
-                        $errorField.html(config.responseErrorMessage ? config.genericErrorMessage(response) : response.statusText);
+                        $errorField.html(thisComponent.config.responseErrorMessage ? thisComponent.config.genericErrorMessage(response) : response.statusText);
                     }
                 }).catch((error) => {
-                    $errorField.html(config.genericErrorMessage ? config.genericErrorMessage(error) : error);
+                    $errorField.html(thisComponent.config.genericErrorMessage ? thisComponent.config.genericErrorMessage(error) : error);
                 })
-
             }
         }
     }
