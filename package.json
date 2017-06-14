@@ -1,0 +1,28 @@
+{
+  "name": "vue-utilities",
+  "version": "1.0.0",
+  "description": "Package with some vue utilities, in order to simplify life",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "utility"
+  ],
+  "author": "Domenico Rizzo",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willypuzzle/vue-utilities.git"
+  },
+  "bugs": {
+    "url": "https://github.com/willypuzzle/vue-utilities/issues"
+  },
+  "homepage": "https://github.com/willypuzzle/vue-utilities#readme",
+  "dependencies" :
+  {
+    "randomstring" : "^1.1.5",
+    "axios": "^0.15.3"
+  }
+}
