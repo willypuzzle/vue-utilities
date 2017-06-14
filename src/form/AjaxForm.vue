@@ -59,6 +59,28 @@
                     }
                 }
             },
+            _validateInput(inputData){
+                if(inputData.required){
+                    switch (inputData.type){
+                        case 'text':
+                            if(inputData.value.trim() !== ''){
+                                return true;
+                            }else{
+                                return false;
+                            }
+                            break;
+                    }
+                }else{
+                    return true;
+                }
+            },
+            _buildPostObject(data){
+                var obj = {};
+                for(let index in data){
+                    let el = data[index];
+                    obj[el.name] = el.value;
+                }
+            },
             confirm(){
                 if(buttons.confirm && buttons.confirm.action){
                     buttons.confirm.action(this);
