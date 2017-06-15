@@ -2,6 +2,11 @@
 
 I use these in some of my applications.
 
+To install:
+```
+npm install --save-dev wp-vue-utilities
+```
+
 To import:
 
 ```javascript
@@ -51,7 +56,9 @@ To Use AjaxForm, an Example:
                     },
                     config: {
                         inputErrorClass: 'input-error',
-                        responseOkRoute: 'list-sites',
+                        responseOkRoute: {
+                            name: 'list-sites'
+                        },
                         postUrl: 'http://localhost/sites/create/'
                     }
                 };

@@ -1,6 +1,6 @@
 {
   "name": "wp-vue-utilities",
-  "version": "1.0.8",
+  "version": "1.0.12",
   "description": "Package with some vue utilities, in order to simplify life",
   "main": "src/index.js",
   "scripts": {

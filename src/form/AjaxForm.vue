@@ -76,11 +76,12 @@
                 }
             },
             _buildPostObject(data){
-                var obj = {};
+                let obj = {};
                 for(let index in data){
                     let el = data[index];
                     obj[el.name] = el.value;
                 }
+                return obj;
             },
             confirm(){
                 let thisComponent = this;
@@ -144,10 +145,10 @@
                     if(thisComponent.config.responseOkAction){
                         thisComponent.config.responseOkAction(this, response);
                     }else if(thisComponent.$router && thisComponent.config.responseOkRoute){
-                        thisComponent.$router.go(thisComponent.config.responseOkRoute);
+                        thisComponent.$router.push(thisComponent.config.responseOkRoute);
                     }
                 }).catch((error) => {
-                    $errorField.html(thisComponent.config.genericErrorMessage ? thisComponent.config.genericErrorMessage(error) : error);
+                    $errorField.html(thisComponent.config.genericErrorMessage ? thisComponent.config.genericErrorMessage(error, thisComponent) : error);
                 }).then(() => {
                     thisComponent.fired = false;
                 })
