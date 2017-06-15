@@ -3,8 +3,8 @@
 </style>
 <template>
     <div>
-        <div>
-            <div v-for="(input, index) in inputs">
+        <div :class="config.inputsDivClassName">
+            <div v-for="(input, index) in inputs" :class="input.div && input.div.className ? input.div.className : ''">
                 <label  v-if="input.label"
                         :class="input.label.className ? input.label.className : ''"
                         :for="'ajax-form-input-field-' + domId + '-' + index"
@@ -23,7 +23,7 @@
         <div :class="'ajax-form-error-field ' + (config.errorFieldClassName ? config.errorFieldClassName : '')">
 
         </div>
-        <div>
+        <div :class="config.buttonsDivClassName">
             <button v-if="buttons.cancel" :id="'ajax-form-cancel-button-' + domId" @click="cancel()" :class="buttons.cancel.className">{{ buttons.cancel.label }}</button>
             <button v-if="buttons.confirm" :id="'ajax-form-confim-button-' + domId" @click="confirm()" :class="buttons.confirm.className">{{ buttons.confirm.label }}</button>
         </div>
@@ -42,7 +42,8 @@
         },
         data(){
             return {
-                domId: randomstring.generate(7)
+                domId: randomstring.generate(7),
+                fired: false
             };
         },
         props: ['inputs', 'buttons', 'config'],
@@ -83,6 +84,12 @@
             },
             confirm(){
                 let thisComponent = this;
+
+                if(thisComponent.fired){
+                    return;
+                }
+                thisComponent.fired = true;
+
                 if(thisComponent.buttons.confirm && thisComponent.buttons.confirm.action){
                     thisComponent.buttons.confirm.action(thisComponent);
                 }
@@ -124,6 +131,7 @@
                 }
 
                 if(!ctrl){
+                    thisComponent.fired = false;
                     return;
                 }
 
@@ -131,19 +139,17 @@
 
                 axios.post(
                     thisComponent.config.postUrl,
-                    thisComponent.buildPostObject(data)
+                    thisComponent._buildPostObject(data)
                 ).then((response) => {
-                    if(response.code === 200){
-                        if(thisComponent.config.responseOkAction){
-                            thisComponent.config.responseOkAction(this);
-                        }else if(thisComponent.$router && thisComponent.config.responseOkRoute){
-                            thisComponent.$router.go(thisComponent.config.responseOkRoute);
-                        }
-                    }else{
-                        $errorField.html(thisComponent.config.responseErrorMessage ? thisComponent.config.genericErrorMessage(response) : response.statusText);
+                    if(thisComponent.config.responseOkAction){
+                        thisComponent.config.responseOkAction(this, response);
+                    }else if(thisComponent.$router && thisComponent.config.responseOkRoute){
+                        thisComponent.$router.go(thisComponent.config.responseOkRoute);
                     }
                 }).catch((error) => {
                     $errorField.html(thisComponent.config.genericErrorMessage ? thisComponent.config.genericErrorMessage(error) : error);
+                }).then(() => {
+                    thisComponent.fired = false;
                 })
             }
         }
