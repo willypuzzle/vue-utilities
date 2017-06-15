@@ -24,8 +24,8 @@
 
         </div>
         <div :class="config.buttonsDivClassName">
-            <button v-if="buttons.cancel" :id="'ajax-form-cancel-button-' + domId" @click="cancel()" :class="buttons.cancel.className">{{ buttons.cancel.label }}</button>
-            <button v-if="buttons.confirm" :id="'ajax-form-confim-button-' + domId" @click="confirm()" :class="buttons.confirm.className">{{ buttons.confirm.label }}</button>
+            <a href="#" v-if="buttons.cancel" :id="'ajax-form-cancel-button-' + domId" @click.prevent="cancel()" :class="buttons.cancel.className">{{ buttons.cancel.label }}</a>
+            <a href="#" v-if="buttons.confirm" :id="'ajax-form-confim-button-' + domId" @click.prevent="confirm()" :class="buttons.confirm.className">{{ buttons.confirm.label }}</a>
         </div>
     </div>
 </template>
