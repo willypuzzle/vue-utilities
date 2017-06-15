@@ -143,7 +143,7 @@
                     thisComponent._buildPostObject(data)
                 ).then((response) => {
                     if(thisComponent.config.responseOkAction){
-                        thisComponent.config.responseOkAction(this, response);
+                        thisComponent.config.responseOkAction(response, thisComponent);
                     }else if(thisComponent.$router && thisComponent.config.responseOkRoute){
                         thisComponent.$router.push(thisComponent.config.responseOkRoute);
                     }

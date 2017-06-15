@@ -2,6 +2,8 @@
 
 I use these in some of my applications.
 
+This package require $ (jQuery) as global variable.
+
 To install:
 ```
 npm install --save-dev wp-vue-utilities
